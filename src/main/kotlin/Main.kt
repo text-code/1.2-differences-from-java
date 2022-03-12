@@ -1,10 +1,12 @@
 fun main() {
-    val count = 4_700_000
+    val amount = 4_700_000
     val paymentCommission = 0.0075
     val minPaymentCommission = 35_000
 
-    val totalPrice = (count * paymentCommission).toInt()
-    val result = if (totalPrice < minPaymentCommission) count - minPaymentCommission else count - totalPrice
+    val totalPrice = (amount * paymentCommission).toInt()
+    val result = if (totalPrice < minPaymentCommission) amount - minPaymentCommission else amount - totalPrice
+
+    println("Сумма перевода: $amount коп.")
 
     if (totalPrice < minPaymentCommission)
         println("Комиссия составляет: $minPaymentCommission коп.")
