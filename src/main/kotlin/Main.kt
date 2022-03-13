@@ -1,14 +1,32 @@
 fun main() {
-    val count = 4_700_000
-    val paymentCommission = 0.0075
-    val minPaymentCommission = 35_000
+    var previousPurchaseAmount = 10_001
 
-    val totalPrice = (count * paymentCommission).toInt()
-    val result = if (totalPrice < minPaymentCommission) count - minPaymentCommission else count - totalPrice
+    val itemPrice = 100
+    val itemCount = 11
 
-    if (totalPrice < minPaymentCommission)
-        println("Комиссия составляет: $minPaymentCommission коп.")
-    else println("Комиссия составляет: $totalPrice коп.")
+    var totalPrice = itemPrice * itemCount
 
-    println("Итог: $result коп.")
+    val standardDiscount = 100
+    val standardDiscountStart = 1_000
+
+    val maxDiscount = 0.05
+    val maxDiscountStart = 10_000
+
+    val vip = true
+    val vipDiscount = 0.01
+
+    if (previousPurchaseAmount > standardDiscountStart && previousPurchaseAmount < maxDiscountStart) {
+        totalPrice -= standardDiscount
+        println("Цена со скидкой: $totalPrice рублей.")
+    } else if (previousPurchaseAmount > maxDiscountStart) {
+        totalPrice -= (totalPrice * maxDiscount).toInt()
+        println("Цена со скидкой: $totalPrice рублей.")
+    }
+
+    if (vip) {
+        totalPrice -= (totalPrice * vipDiscount).toInt()
+        println("Цена со скидкой vip: $totalPrice рублей.")
+    } else {
+        println("Цена без скидок: $totalPrice")
+    }
 }
